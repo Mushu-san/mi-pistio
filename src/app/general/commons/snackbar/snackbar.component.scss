@@ -1,0 +1,105 @@
+$transition-duration: 5s;
+
+.dialog-container {
+  align-items: center;
+  position: relative;
+  color: black;
+
+  .close {
+    position: absolute;
+    right: 0px;
+  }
+
+  .icon {
+    margin-top: 11px;
+
+    mat-spinner {
+      transition: all $transition-duration ease;
+      margin: -16px 24px 0 0;
+    }
+
+    &:before {
+      transition: all $transition-duration ease;
+      margin-right: 16px;
+      font-size: 30px;
+    }
+  }
+
+  .text {
+    p {
+      margin: 0;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bolder !important;
+    }
+
+    .content {
+      font-size: 14px;
+    }
+  }
+
+  .info:before {
+    color: #006CE3;
+    font-family: "Material Icons";
+    content: '\e88e';
+  }
+
+  .success:before {
+    color: #3DBC60;
+    font-family: "Material Icons";
+    content: '\e86c';
+  }
+
+  .warning:before {
+    color: #EF9400;
+    font-family: "Material Icons";
+    content: '\e002';
+  }
+
+  .error:before {
+    color: #ED4E2B;
+    font-family: "Material Icons";
+    content: '\e5c9';
+  }
+
+  .question:before {
+    color: #87ADBD;
+    font-family: "Material Icons";
+    content: '\e887';
+  }
+}
+
+.progress {
+  width: 100%;
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 4px;
+  transition: width linear;
+  pointer-events: unset !important;
+}
+
+.progress.success {
+  background: #3DBC60 !important;
+}
+
+.progress.warning {
+  background: #EF9400 !important;
+}
+
+.progress.error {
+  background: #ED4E2B !important;
+}
+
+.progress.question {
+  background: #87ADBD !important;
+}
+
+.progress.loading {
+  background: #14649B !important;
+}
+
+.progress.info {
+  background: #006CE3 !important;
+}

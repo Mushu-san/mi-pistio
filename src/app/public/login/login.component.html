@@ -1,0 +1,64 @@
+<div>
+  <div class="container">
+
+    <div class="card-container">
+      <mat-card>
+
+        <div class="row justify-content-center" *ngIf="!isSignUp">
+          <form [formGroup]="logForm">
+
+            <mat-form-field appearance="outline" class="col-sm-12">
+              <input matInput placeholder="Correo" formControlName="username" [email]="true" (keydown)="validateReset()">
+            </mat-form-field>
+
+            <mat-checkbox class="col-sm-12" (change)="validateCheck($event.checked)">Empleado</mat-checkbox>
+
+            <mat-form-field *ngIf="showPasswordFiled" appearance="outline" class="col-sm-12">
+              <input matInput placeholder="Contraseña" formControlName="password" [type]="hide ? 'password' : 'text'"
+                required>
+              <mat-icon matSuffix (click)="hidden()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+
+            <button class="col-sm-12" mat-raised-button color="primary" [disabled]="!logForm.valid" (click)="switch()">{{option}}</button>
+          </form>
+        </div>
+
+        <div class="row justify-content-center" *ngIf="isSignUp">
+          <form [formGroup]="signUpForm">
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="DPI" formControlName="dpi" >
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Nombre" formControlName="nombre" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Apellido" formControlName="apellido" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Contacto" formControlName="contacto" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Correo" formControlName="correo" [email]="true" (keydown)="validateReset()" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Contraseña" formControlName="password" [type]="hide ? 'password' : 'text'"
+                required>
+              <mat-icon matSuffix (click)="hidden()">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+
+            <button class="col-sm-12" mat-raised-button color="primary" [disabled]="!signUpForm.valid" (click)="signUp()">Registrarse</button>
+          </form>
+        </div>
+
+
+
+      </mat-card>
+    </div>
+  </div>
+</div>

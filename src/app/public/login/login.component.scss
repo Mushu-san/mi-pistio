@@ -1,0 +1,17 @@
+.content {
+  grid-area: main;
+}
+
+.container {
+  display: grid;
+  grid-template-areas: "main";
+  height: 100vh; /* Opcional: 100% de la altura de la ventana */
+  width: 100%; /* Opcional: 100% del ancho disponible */
+}
+
+.card-container {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 100%; /* Opcional: Ajusta la altura según tus necesidades */
+}

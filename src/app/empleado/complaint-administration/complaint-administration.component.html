@@ -1,0 +1,40 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+
+  <button class="but" (click)="actionClick('crear')" mat-button color="primary" >
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <mat-card>
+    <table mat-table [dataSource]="dataSource" class="table-responsive">
+      <div *ngFor="let columna of displayedColumns" class="align-center">
+        <ng-container matColumnDef="{{columna}}" class="align-content-center">
+          <th mat-header-cell *matHeaderCellDef> {{columna}}</th>
+          <td mat-cell matRipple *matCellDef="let element" >
+
+            <p *ngIf="!columna.match('Acciones')" >{{ evaluar(element, columna) }}</p>
+
+            <div *ngIf="columna.match('Acciones')">
+              <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" >
+                <div *ngFor="let acciones of element.acciones">
+                  <button mat-menu-item (click)="actionClick(acciones.action, element.hidden)" color="{{acciones.color}}">
+                    <mat-icon>{{acciones.icono}}</mat-icon>
+                    <span>
+                      {{acciones.nombre}}
+                    </span>
+                  </button>
+                </div>
+              </mat-menu>
+            </div>
+
+          </td>
+        </ng-container>
+      </div>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

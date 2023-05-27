@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+
+  <button (click)="click()" mat-raised-button color="primary" >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span ><button mat-raised-button (click)="home()" color="primary">
+    Banco Mi Prestamista
+  </button></span>
+  <span class="example-spacer"></span>
+
+  <button (click)="!user ? login() : null " mat-raised-button class="example-icon favorite-icon"
+  aria-label="Example icon-button with heart icon" mat-button style="margin-right: 10px;">
+  {{user ? user.nombre : 'Login'}}
+  </button>
+
+  <button  (click)="!user ? registro() : logOut()" mat-raised-button color="primary" >
+    {{!user ? 'Registrarse' : 'Cerrar Sesión'}}
+  </button>
+
+</mat-toolbar>

@@ -1,0 +1,9 @@
+<h1>
+  Menu
+</h1>
+
+<div *ngFor="let route of urls">
+  <button mat-raised-button  (click)="navigate(route.url)" color="primary"  *ngIf="validate(route)">
+    {{route.name}}
+  </button>
+</div>

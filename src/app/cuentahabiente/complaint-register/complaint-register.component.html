@@ -1,0 +1,7 @@
+<div class="container">
+  <ng-hcaptcha (verify)="onVerify($event)"
+              (expired)="onExpired($event)"
+              (error)="onError($event)" *ngIf="showCaptcha"></ng-hcaptcha>
+<app-complaint-register-form [isCuentaHabiente]="true" *ngIf="!showCaptcha"></app-complaint-register-form>
+
+</div>

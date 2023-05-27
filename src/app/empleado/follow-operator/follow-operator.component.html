@@ -1,0 +1,75 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+  <mat-card>
+
+    <table mat-table [dataSource]="dataSource" class="table-responsive">
+      <ng-container matColumnDef="correlativo">
+        <th mat-header-cell *matHeaderCellDef> Correlativo </th>
+        <td mat-cell *matCellDef="let element"> {{element.correlativoVisual}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="etapa">
+        <th mat-header-cell *matHeaderCellDef> Etapa </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombreEstadoExterno}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="detalle">
+        <th mat-header-cell *matHeaderCellDef> Detalle Queja </th>
+        <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <div>
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="verFicha(element)">
+                  <mat-icon>find_in_page</mat-icon>
+                  <span>
+                    Ver Ficha
+                  </span>
+                </button>
+                <button mat-menu-item *ngIf="element.filename" (click)="downloadFile(element.filename)">
+                  <mat-icon>download</mat-icon>
+                  <span>
+                    Descargar archivo
+                  </span>
+                </button>
+                <button mat-menu-item (click)="procedente(element.idQueja)" *ngIf="!element.nombreEstadoExterno.match('Procedente')" >
+                  <mat-icon>check_circle</mat-icon>
+                  <span>
+                    Procedente
+                  </span>
+                </button>
+                <button mat-menu-item *ngIf="!element.nombreEstadoExterno.match('Procedente')" (click)="rechazarForm(element.idQueja)">
+                  <mat-icon>cancel</mat-icon>
+                  <span>
+                    Rechazar
+                  </span>
+                </button>
+                <button mat-menu-item *ngIf="element.nombreEstadoExterno.match('Procedente')" (click)="resolverForm(element.idQueja)">
+                  <mat-icon>send</mat-icon>
+                  <span>
+                    Resolver
+                  </span>
+                </button>
+                <button mat-menu-item (click)="verComentario(element.idQueja)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>
+                    Ver Detalle
+                  </span>
+                </button>
+            </mat-menu>
+          </div>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

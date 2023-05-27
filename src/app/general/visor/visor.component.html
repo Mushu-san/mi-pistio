@@ -1,0 +1,14 @@
+<!-- Muestra documento a consultado -->
+<div>
+  <div class="row ">
+    <!-- Se muestre documento -->
+    <div class="col-12">
+      <div >
+        <ngx-extended-pdf-viewer *ngIf="mostrarPdf" [src]="docBase64" [showOpenFileButton]="false"
+          [showBookmarkButton]="false" [showPropertiesButton]="false" [showSidebarButton]="false"
+          [useBrowserLocale]="true" [showUnverifiedSignatures]="true">
+        </ngx-extended-pdf-viewer>
+      </div>
+    </div>
+  </div>
+</div>

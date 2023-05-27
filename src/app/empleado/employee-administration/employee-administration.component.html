@@ -1,0 +1,51 @@
+<div class="my-2 my-sm-3 my-md-4 my-lg-5 mx-2 mx-sm-3 mx-md-4 mx-lg-5">
+
+
+  <div class="row text-ruta {{rutas.length > 0 ? '' : 'mt-3'}}">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li *ngFor="let ruta of rutas; let i = index" class="breadcrumb-item botonAccion" aria-current="page"
+          [ngStyle]="{cursor: readonly ? '' : 'pointer'}" (click)="rutas.length <= 0 ? {} : deleteItemRoute(i)">
+          {{ruta.name}}
+        </li>
+      </ol>
+    </nav>
+    <button class="but" (click)="actionClick()" mat-button color="primary" *ngIf="rutas.length > 0">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <mat-card>
+    <table mat-table [dataSource]="dataSource" class="table-responsive">
+
+      <div *ngFor="let columna of displayedColumns" class="align-center">
+        <ng-container matColumnDef="{{columna}}" class="align-content-center">
+          <th mat-header-cell *matHeaderCellDef> {{columna}}</th>
+          <td mat-cell matRipple *matCellDef="let element" >
+
+            <p *ngIf="!columna.match('Acciones')" (click)="event(element, columna)">{{ evaluar(element, columna) }}</p>
+
+            <div *ngIf="columna.match('Acciones')">
+              <button mat-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" >
+                <div *ngFor="let acciones of element.acciones">
+                  <button mat-menu-item (click)="actionClick(acciones.action, element.hidden)" color="{{acciones.color}}">
+                    <mat-icon>{{acciones.icono}}</mat-icon>
+                    <span>
+                      {{acciones.nombre}}
+                    </span>
+                  </button>
+                </div>
+              </mat-menu>
+            </div>
+
+          </td>
+        </ng-container>
+      </div>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card>
+</div>

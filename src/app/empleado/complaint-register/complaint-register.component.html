@@ -1,0 +1,82 @@
+<div>
+  <div class="container">
+
+    <div class="card-container">
+
+      <mat-card>
+        <div class="row justify-content-center">
+          <form [formGroup]="complaintForm">
+
+            <mat-grid-list cols="1" [rowHeight]="100" *ngIf="!isCuentaHabiente">
+              <mat-grid-tile>
+                <mat-label>Medio de Ingreso: </mat-label>
+                <mat-radio-group formControlName="idMedioIngreso" class="mx-5">
+                  <mat-radio-button *ngFor="let medio of medioCatalog" [value]="medio.id" class="mx-3">
+                    {{medio.nombre}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </mat-grid-tile>
+            </mat-grid-list>
+
+
+            <mat-form-field appearance="outline" class="col-sm-12">
+              <input matInput placeholder="Nombre" formControlName="nombre" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Correo" formControlName="email" autocomplete="off">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <input matInput placeholder="Telefono" formControlName="telefono" [autocomplete]="">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <mat-label>Oficina </mat-label>
+              <input type="text" placeholder="Elige una oficina" aria-label="Oficina" matInput
+                [formControl]="complaintForm.get('nombrePuntoAcceso')" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getEmployeesByPoint($event.option.value)">
+                <mat-option *ngFor="let option of puntosCatalog" [value]="option.nombre">
+                  {{option.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-6">
+              <mat-label>Nombre del empleado </mat-label>
+              <input type="text" placeholder="Elige un empleado" aria-label="Nombre del empleado" matInput
+                [formControl]="complaintForm.get('nombreEmpleadoAtendio')" [matAutocomplete]="auto2">
+              <mat-autocomplete #auto2="matAutocomplete">
+                <mat-option *ngFor="let option of employeesCatalog" [value]="option.nombre">
+                  {{option.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-sm-12">
+              <mat-label>Detalle de la queja</mat-label>
+              <textarea matInput formControlName="descripcion" autocomplete="off"></textarea>
+            </mat-form-field>
+
+            <app-upload-file #archivo class="col-sm-12"  [label]="'Adjuntar archivo'"
+              [accept]="['pdf']" [id]="'file'" [folder]="''" [saveOnLoad]="false" [formControlName]="'fileUpload'">
+            </app-upload-file>
+
+            <button mat-raised-button color="primary" (click)="guardarQueja()" [disabled]="!complaintForm.valid">
+              <mat-icon>send</mat-icon>
+              Enviar
+            </button>
+
+            <button class="px-10" mat-raised-button color="primary" (click)="cancel()" >
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+
+          </form>
+        </div>
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>
