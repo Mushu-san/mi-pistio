@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   seguridad: true,
-  BASE: "http://localhost:8080",
+  BASE: "https://mi-pistio-recargado.herokuapp.com/",
 };
