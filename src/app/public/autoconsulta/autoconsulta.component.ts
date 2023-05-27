@@ -79,6 +79,27 @@ export class AutoconsultaComponent implements OnInit {
     console.log(e);
   }
 
+  getColor(idEstado: any): string {
+    let color = ''
+
+    switch (idEstado) {
+      case '21':
+        color='green'
+      break;
+      case '28':
+        color='yellow'
+      break;
+      case '34':
+        color='red'
+      break;
+
+      default:
+        color = ''
+        break;
+    }
+
+    return color;
+  }
 
   chosenYearHandler(e: Moment, i: any){
     const normalizedYear = e.toDate().getFullYear();
